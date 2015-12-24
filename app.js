@@ -36,8 +36,6 @@ function getChapter(url)
     });
 }
 
-
-
 function getChapterRecursive(url, chapters)
 {
     return new Promise((resolve, reject) =>
@@ -127,4 +125,4 @@ app.get("/:id", (req, res) =>
     });
 });
 
-app.listen(80);
+app.listen(process.env.PORT);
