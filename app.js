@@ -88,6 +88,11 @@ function item (data)
 
 var app = express();
 
+app.get("/", (req, res) =>
+{
+    res.send("index");
+});
+
 app.get("/:id", (req, res) =>
 {
     fs.readFile(req.params.id + ".json", "utf8", (err, data) =>
