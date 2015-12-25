@@ -110,10 +110,10 @@ app.get("/:id", (req, res) =>
                 data.feed = feed(data);
                 res.send(new Buffer(data.feed));
 
-                // fs.writeFile(req.params.id + ".json", JSON.stringify(data), (err) =>
-                // {
-                //     if (err) throw err;
-                // });
+                fs.writeFile(req.params.id + ".json", JSON.stringify(data), (err) =>
+                {
+                    if (err) throw err;
+                });
             },
             (err) =>
             {
