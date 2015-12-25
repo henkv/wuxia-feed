@@ -19,7 +19,7 @@ function getChapter(url)
         request(url, (err, res, body) => {
             $ = cheerio.load(body);
 
-            if ($('.entry-content').text().length > 0)
+            if ($('.entry-content').text().length > 100)
             {
                 chapter.title = $(".entry-title").text().replace(/\W+/g, ' ');
                 chapter.link = url;
