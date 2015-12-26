@@ -63,7 +63,7 @@ Feed.prototype.xml = function()
         `<title>${this.data_.title || ""}</title>`,
         `<description>${this.data_.description || ""}</description>`,
         `<link>${this.data_.link || ""}</link>`,
-        `${this.data_.items.sort().join('')}`,
+        `${this.data_.items.sort((a,b) => b - a).join('')}`,
         `</channel>`,
         `</rss>`
     ].join('\n');
