@@ -63,7 +63,7 @@ Feed.prototype.xml = function()
         `<title>${this.data_.title || ""}</title>`,
         `<description>${this.data_.description || ""}</description>`,
         `<link>${this.data_.link || ""}</link>`,
-        `${this.data_.items.sort((a,b) => b - a).join('')}`,
+        `${this.data_.items.join('')}`,
         `</channel>`,
         `</rss>`
     ].join('\n');
@@ -79,7 +79,7 @@ function getRecursive(url, items) {
         chapter.get().then((self) =>
         {
             console.log("> Recursive update next");
-            items.push(self.xml());
+            items.unshift(self.xml());
 
             getRecursive(self.next_, items)
             .then(resolve, console.log);
