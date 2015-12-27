@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server/main.js"
+    "start": "node server/main.js",
+    "dev": "nodemon server/main.js -w server/*"
   },
   "author": "",
   "license": "ISC",
