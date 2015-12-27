@@ -1,3 +1,7 @@
+# Binaries
+*.sqlite
+
+
 # Logs
 logs
 *.log
