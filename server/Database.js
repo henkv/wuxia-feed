@@ -1,10 +1,7 @@
 var request = require("request");
 var cheerio = require("cheerio");
 var Sequelize = require("sequelize");
-
-var henkDb = "postgres://eziyrhvoarrive:pDapG7ngaevqZm60CHduunN58K@ec2-54-195-252-202.eu-west-1.compute.amazonaws.com:5432/d5bm3f4pu9i6ns";
-var debugDb = "sqlite://:@db.sqlite";
-var sequelize = new Sequelize(debugDb, {define: { timestamps: false }});
+var sequelize = new Sequelize("sqlite://:@db.sqlite", {define: { timestamps: false }});
 
 var Feed = sequelize.define('feed',
 {
@@ -88,8 +85,7 @@ function newFeed(id, title, desc, link, next)
 
 function init()
 {
-    return Promise.all(
-    [
+    return Promise.all([
         Feed.sync({force: true}),
         Item.sync({force: true})
     ])
