@@ -1,5 +1,5 @@
 import "necolas/normalize.css";
-import "/css/app.css!";
+import "css/app.css!";
 
 import React from "react";
 import ReactDOM from "react-dom";

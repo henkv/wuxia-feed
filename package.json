@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node server/main.js",
-    "dev": "nodemon server/main.js -w server/*",
+    "jspm": "node ./node_modules/jspm/cli.js",
     "postinstall": "jspm install"
   },
   "author": "",
@@ -17,7 +17,8 @@
     "sqlite3": "^3.1.1"
   },
   "devDependencies": {
-    "jspm": "^0.16.19"
+    "jspm": "^0.16.19",
+    "systemjs-builder": "^0.14.15"
   },
   "jspm": {
     "directories": {
@@ -36,6 +37,7 @@
     "devDependencies": {
       "babel": "npm:babel-core@^5.8.24",
       "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "clean-css": "npm:clean-css@^3.4.8",
       "core-js": "npm:core-js@^1.1.4"
     }
   }

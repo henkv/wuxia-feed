@@ -1,4 +1,4 @@
-import "/css/FeedEdit.css!";
+import "css/FeedEdit.css!";
 import React from "react";
 
 export default class FeedEdit extends React.Component

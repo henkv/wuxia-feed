@@ -1,4 +1,4 @@
-import "/css/FeedList.css!";
+import "css/FeedList.css!";
 import React from "react";
 import { Link } from "react-router";
 
