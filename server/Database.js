@@ -36,7 +36,7 @@ var Feed = sequelize.define('feed',
                             date: new Date(),
                         })
                         .then(() => this.save())
-                        .then(resolve)
+                        .then(() => resolve(this))
                         .catch(err => { throw err; });
                     }
                     else
@@ -86,28 +86,28 @@ function newFeed(id, title, desc, link, next)
 function init()
 {
     return Promise.all([
-        Feed.sync({force: true}),
-        Item.sync({force: true})
-    ])
-    .then(() =>
-    {
-        return Feed.create(
-        {
-            id: 'tdg',
-            title: 'Tales of Demons and Gods',
-            desc: 'Wuxiaworld Novel',
-            link: 'http://www.wuxiaworld.com/tdg-index/',
-            next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-181'
-        })
-        .then(() => Feed.create(
-        {
-            id: 'mga',
-            title: 'Martial God Asura',
-            desc: 'Wuxiaworld Novel',
-            link: 'http://www.wuxiaworld.com/mga-index/',
-            next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-589/'
-        }));
-    });
+        Feed.sync({force: false}),
+        Item.sync({force: false})
+    ]);
+    // .then(() =>
+    // {
+    //     return Feed.create(
+    //     {
+    //         id: 'tdg',
+    //         title: 'Tales of Demons and Gods',
+    //         desc: 'Wuxiaworld Novel',
+    //         link: 'http://www.wuxiaworld.com/tdg-index/',
+    //         next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-181'
+    //     })
+    //     .then(() => Feed.create(
+    //     {
+    //         id: 'mga',
+    //         title: 'Martial God Asura',
+    //         desc: 'Wuxiaworld Novel',
+    //         link: 'http://www.wuxiaworld.com/mga-index/',
+    //         next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-589/'
+    //     }));
+    // });
 }
 
 module.exports = {init, getFeeds, getFeed, newFeed};

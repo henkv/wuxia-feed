@@ -1,0 +1,9 @@
+.feedItem
+{
+    margin: 0.25em;
+}
+.feedItem_selected
+{
+    color: hsl(80, 40%, 60%);
+    font-weight: bold;
+}
