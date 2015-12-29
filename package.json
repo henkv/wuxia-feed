@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "node server/main.js",
-    "dev": "nodemon server/main.js -w server/*"
+    "dev": "nodemon server/main.js -w server/*",
+    "postinstall": "jspm install"
   },
   "author": "",
   "license": "ISC",
