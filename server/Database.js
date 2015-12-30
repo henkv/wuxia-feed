@@ -32,7 +32,7 @@ var Feed = sequelize.define('feed',
                             link: link,
                             title: $(".entry-title").text().trim(),
                             desc: $('.entry-content').text()
-                                .substr(33).match(/^(.*)\n?/)[1],
+                                .match(/chapter \d+.*?(\w.*)\n/i)[1],
                             date: new Date(),
                         })
                         .then(() => this.save())
