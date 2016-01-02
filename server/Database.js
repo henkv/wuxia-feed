@@ -24,7 +24,7 @@ var Feed = sequelize.define('feed',
                     if (err) return reject(err);
                     var $ = cheerio.load(body);
 
-                    if ($('.entry-content').text().length > 100)
+                    if ($('#comments').length > 0)
                     {
                         this.set("next", $('a:contains(Next Chapter)').attr("href"));
                         this.createItem(
