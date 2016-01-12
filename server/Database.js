@@ -6,8 +6,8 @@ var sequelize = new Sequelize("sqlite://:@db.sqlite", {define: { timestamps: fal
 var Feed = sequelize.define('feed',
 {
     id:    { type: Sequelize.STRING, primaryKey: true },
-    title: Sequelize.STRING,
-    desc:  Sequelize.STRING,
+    title: { type: Sequelize.STRING },
+    desc:  { type: Sequelize.STRING },
     link:  { type: Sequelize.STRING, validate: { isUrl: true }},
     next:  { type: Sequelize.STRING, validate: { isUrl: true }}
 },
@@ -24,7 +24,7 @@ var Feed = sequelize.define('feed',
                     if (err) return reject(err);
                     var $ = cheerio.load(body);
 
-                    if ($('.entry-content').text().length > 100)
+                    if ($('#comments').length > 0)
                     {
                         this.set("next", $('a:contains(Next Chapter)').attr("href"));
                         this.createItem(
@@ -32,11 +32,11 @@ var Feed = sequelize.define('feed',
                             link: link,
                             title: $(".entry-title").text().trim(),
                             desc: $('.entry-content').text()
-                                .substr(33).match(/^(.*)\n?/)[1],
+                                .match(/chapter \d+.*?(\w.*)\n/i)[1],
                             date: new Date(),
                         })
                         .then(() => this.save())
-                        .then(resolve)
+                        .then(() => resolve(this))
                         .catch(err => { throw err; });
                     }
                     else
@@ -91,19 +91,30 @@ function init()
     ])
     .then(() =>
     {
-      return Feed.create({
-        id: 'tdg',
-        title: 'Tales of Demons and Gods',
-        desc: 'Wuxiaworld Novel',
-        link: 'http://www.wuxiaworld.com/tdg-index/',
-        next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-181'
-      }).then(() => Feed.create({
-        id: 'mga',
-        title: 'Martial God Asura',
-        desc: 'Wuxiaworld Novel',
-        link: 'http://www.wuxiaworld.com/mga-index/',
-        next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-589/'
-      }));
+        return Feed.create(
+        {
+            id: 'tdg',
+            title: 'Tales of Demons and Gods',
+            desc: 'Wuxiaworld Novel',
+            link: 'http://www.wuxiaworld.com/tdg-index/',
+            next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-208'
+        })
+        .then(() => Feed.create(
+        {
+            id: 'mga',
+            title: 'Martial God Asura',
+            desc: 'Wuxiaworld Novel',
+            link: 'http://www.wuxiaworld.com/mga-index/',
+            next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-620/'
+        }))
+        .then(() => Feed.create(
+        {
+            id: 'issth',
+            title: 'I Shall Seal the Heavens',
+            desc: 'Wuxiaworld Novel',
+            link: 'http://www.wuxiaworld.com/issth-index/',
+            next: 'http://www.wuxiaworld.com/issth-index/issth-book-4-chapter-395/'
+        }));
     });
 }
 

@@ -30,6 +30,24 @@ app.get('/rss/:id', (req, res) =>
     });
 });
 
+app.get("/api/feeds", (req, res) =>
+{
+    Database.getFeeds()
+    .then((feeds) =>
+    {
+        res.json(feeds);
+    });
+});
+
+app.get("/api/feed/:id", (req, res) =>
+{
+    Database.getFeed(req.params.id)
+    .then((feeds) =>
+    {
+        res.json(feeds);
+    });
+});
+
 app.use(express.static("client"));
 app.use("*", express.static("client/index.html"));
 
