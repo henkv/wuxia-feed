@@ -97,7 +97,7 @@ function init()
             title: 'Tales of Demons and Gods',
             desc: 'Wuxiaworld Novel',
             link: 'http://www.wuxiaworld.com/tdg-index/',
-            next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-181'
+            next: 'http://www.wuxiaworld.com/tdg-index/tdg-chapter-208'
         })
         .then(() => Feed.create(
         {
@@ -105,7 +105,15 @@ function init()
             title: 'Martial God Asura',
             desc: 'Wuxiaworld Novel',
             link: 'http://www.wuxiaworld.com/mga-index/',
-            next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-589/'
+            next: 'http://www.wuxiaworld.com/mga-index/mga-chapter-620/'
+        }))
+        .then(() => Feed.create(
+        {
+            id: 'issth',
+            title: 'I Shall Seal the Heavens',
+            desc: 'Wuxiaworld Novel',
+            link: 'http://www.wuxiaworld.com/issth-index/',
+            next: 'http://www.wuxiaworld.com/issth-index/issth-book-4-chapter-395/'
         }));
     });
 }
